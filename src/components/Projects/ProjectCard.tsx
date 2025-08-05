@@ -1,8 +1,20 @@
 'use client';
-import React from 'react';
+import React, { JSX } from 'react';
 
-export default function ProjectCard({ index, title, setModal }) {
-  const descriptions = [
+// Type definitions
+interface Modal {
+  active: boolean;
+  index: number;
+}
+
+interface ProjectCardProps {
+  index: number;
+  title: string;
+  setModal: (modal: Modal) => void;
+}
+
+export default function ProjectCard({ index, title, setModal }: ProjectCardProps): JSX.Element {
+  const descriptions: string[] = [
     "Aiming to build a professional career in design, tech, or digital media",
     "Seeking practical, job-ready skills beyond traditional education", 
     "Looking to enter creative industries from other fields",
@@ -14,8 +26,8 @@ export default function ProjectCard({ index, title, setModal }) {
       onMouseEnter={() => setModal({ active: true, index })}
       onMouseLeave={() => setModal({ active: false, index })}
       className="
-        flex flex-col  sm:flex-row w-full justify-between items-start sm:items-center
-         sm:px-8 md:px-16 
+        flex flex-col sm:flex-row w-full justify-between items-start sm:items-center
+        sm:px-8 md:px-16 
         py-6 sm:py-8 md:py-[50px] 
         border-t border-[#c9c9c9] 
         cursor-pointer transition-all duration-200 

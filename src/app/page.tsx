@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
 import LanguageLoader from "./ui/Loader";
 import HomPage from "./ui/HomePage";

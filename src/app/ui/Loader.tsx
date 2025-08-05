@@ -21,7 +21,6 @@ const languages = [
 
 export default function LanguageLoader({ onLoadingComplete }: LanguageLoaderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
   const [isSliding, setIsSliding] = useState(false);
 
   useEffect(() => {

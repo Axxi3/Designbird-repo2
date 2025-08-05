@@ -1,36 +1,41 @@
 // components/MaskCursorEffect.tsx
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { JSX, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import useMousePosition from '@/lib/useMousePosition';
-import { TextAnimate } from '../magicui/text-animate';
 
-export default function MaskCursorEffect(){
-  const [mousePosition, setMousePosition] = useState({
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+type CursorVariant = "default" | "text";
+
+export default function MaskCursorEffect(): JSX.Element {
+  const [mousePosition, setMousePosition] = useState<MousePosition>({
     x: 0,
     y: 0
   });
-  const [cursorVariant, setCursorVariant] = useState("default");
-  const [isMobile, setIsMobile] = useState(false);
+  const [cursorVariant, setCursorVariant] = useState<CursorVariant>("default");
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     // Check if device is mobile/tablet
-    const checkIfMobile = () => {
+    const checkIfMobile = (): void => {
       setIsMobile(window.innerWidth <= 1024 || 'ontouchstart' in window);
     };
     
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
 
-    const mouseMove = e => {
+    const mouseMove = (e: MouseEvent): void => {
       if (!isMobile) {
         setMousePosition({
           x: e.clientX,
           y: e.clientY
         });
       }
-    }
+    };
 
     if (!isMobile) {
       window.addEventListener("mousemove", mouseMove);
@@ -53,14 +58,15 @@ export default function MaskCursorEffect(){
       x: mousePosition.x - 75,
       y: mousePosition.y - 75,
       backgroundColor: "yellow",
-      mixBlendMode: "difference"
+      mixBlendMode: "difference" as const
     }
-  }
+  };
 
-  const textEnter = () => {
+  const textEnter = (): void => {
     if (!isMobile) setCursorVariant("text");
   };
-  const textLeave = () => {
+  
+  const textLeave = (): void => {
     if (!isMobile) setCursorVariant("default");
   };
 
@@ -86,10 +92,10 @@ export default function MaskCursorEffect(){
                    text-sm sm:text-base md:text-lg lg:text-xl xl:text-[26px]
                    px-2 sm:px-4 lg:px-0"
       >
-        At Designbird, we believe that great design is more than aesthetics—it's strategy, impact, and a
+        At Designbird, we believe that great design is more than aesthetics—it&apos;s strategy, impact, and a
         career. Founded in 2024 in Durgapur, West Bengal, Designbird was born out of a simple idea:
         to bridge the gap between raw creative talent and real-world industry skills.
-        Over the years, we've evolved from a small classroom setup into a thriving creative institute,
+        Over the years, we&apos;ve evolved from a small classroom setup into a thriving creative institute,
         empowering hundreds of students to find their voice—and their profession—in the fast-paced
         world of design, development, and digital marketing.
       </p>

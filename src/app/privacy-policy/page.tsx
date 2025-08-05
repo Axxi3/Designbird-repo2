@@ -36,7 +36,7 @@ export default function TermsAndConditions() {
             <h2 className="text-2xl font-semibold text-white mb-6">1. Acceptance of Terms</h2>
             <div className="bg-[#1a1a1a] border border-white/10 rounded-lg p-6">
               <p className="text-gray-300 leading-relaxed">
-                By accessing and using Designbird's services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+                By accessing and using Designbird&apos;s services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
             </div>
           </section>

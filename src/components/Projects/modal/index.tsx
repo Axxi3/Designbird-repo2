@@ -1,11 +1,27 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect, JSX } from 'react';
+import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
 import gsap from 'gsap';
 
-const scaleAnimation = {
+// Type definitions
+interface Project {
+  src: string;
+  color: string;
+}
+
+interface Modal {
+  active: boolean;
+  index: number;
+}
+
+interface IndexProps {
+  modal: Modal;
+  projects: Project[];
+}
+
+const scaleAnimation: Variants = {
   initial: { scale: 0, x: '-50%', y: '-50%' },
   enter: {
     scale: 1,
@@ -21,12 +37,12 @@ const scaleAnimation = {
   },
 };
 
-export default function index({ modal, projects }) {
+export default function Index({ modal, projects }: IndexProps): JSX.Element {
   const { active, index } = modal;
 
-  const modalContainer = useRef(null);
-  const cursor = useRef(null);
-  const cursorLabel = useRef(null);
+  const modalContainer = useRef<HTMLDivElement>(null);
+  const cursor = useRef<HTMLDivElement>(null);
+  const cursorLabel = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!modalContainer.current || !cursor.current || !cursorLabel.current) return;
@@ -59,7 +75,7 @@ export default function index({ modal, projects }) {
       ease: 'power3',
     });
 
-    const moveHandler = (e) => {
+    const moveHandler = (e: MouseEvent): void => {
       if (!active) return;
       const { pageX, pageY } = e;
       xMoveContainer(pageX);
@@ -88,7 +104,7 @@ export default function index({ modal, projects }) {
           style={{ top: index * -100 + '%' }}
           className="absolute w-full h-full transition-[top] duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]"
         >
-          {projects.map((project, i) => (
+          {projects.map((project: Project, i: number) => (
             <div
               key={`modal_${i}`}
               className="h-full w-full flex items-center justify-center"

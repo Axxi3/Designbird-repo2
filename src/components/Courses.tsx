@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export type Course = {
   title: string;
@@ -158,9 +158,8 @@ const Courses: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [currentX, setCurrentX] = useState(0);
-  const marqueeControls = useAnimation();
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
 
   // Triple the courses for seamless infinite scroll
   const infiniteCourses = [...courses, ...courses, ...courses];

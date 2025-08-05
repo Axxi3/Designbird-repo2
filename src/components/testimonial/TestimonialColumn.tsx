@@ -1,24 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from "react";
+import React, { JSX } from "react";
 import { twMerge } from "tailwind-merge";
+import { StaticImageData } from "next/image";
 
-export type TestimonialColumnType = Array<{
+// Type definitions
+export interface TestimonialItem {
   text: string;
-  imageSrc: string;
+  imageSrc: string | StaticImageData;  // Updated to accept both types
   name: string;
   username: string;
-}>;
+}
 
-export default function TestimonialColumn(props: {
+export type TestimonialColumnType = TestimonialItem[];
+
+interface TestimonialColumnProps {
   testimonials: TestimonialColumnType;
   className?: string;
   reverse?: boolean;
   maskGradient?: boolean;
-}) {
-  const { testimonials, className, reverse = false, maskGradient = true } = props;
+}
 
+export default function TestimonialColumn({
+  testimonials,
+  className,
+  reverse = false,
+  maskGradient = true,
+}: TestimonialColumnProps): JSX.Element {
   return (
     <motion.div
       initial={{
@@ -39,9 +48,9 @@ export default function TestimonialColumn(props: {
         className
       )}
     >
-      {Array.from({ length: 2 }).map((_, i) => (
+      {Array.from({ length: 2 }).map((_, i: number) => (
         <React.Fragment key={i}>
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial: TestimonialItem, index: number) => (
             <div
               className="p-6 sm:p-8 border border-[#ffffff0f] rounded-3xl shadow-[0_7px_14px_#00000066] bg-[#1a1a1a] max-w-xs w-full transition-all duration-300 hover:shadow-lg"
               key={`${index}-${i}`}
@@ -49,7 +58,7 @@ export default function TestimonialColumn(props: {
               <div className="text-neutral-300 leading-relaxed">{testimonial.text}</div>
               <div className="flex items-center gap-3 mt-5">
                 <img
-                  src={testimonial.imageSrc}
+                  src={typeof testimonial.imageSrc === 'string' ? testimonial.imageSrc : testimonial.imageSrc.src}
                   width={40}
                   height={40}
                   alt={testimonial.name}

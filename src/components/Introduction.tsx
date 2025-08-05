@@ -1,8 +1,7 @@
 "use client";
 
-import { useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
+
+import {  useRef } from "react";
 
 export default function Introduction() {
     const scrollTarget = useRef<HTMLDivElement>(null);
@@ -16,7 +15,7 @@ export default function Introduction() {
                     <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
                         <blockquote className="relative">
                             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-light text-white/90 leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-relaxed mb-4 sm:mb-6 max-w-4xl mx-auto px-2 sm:px-4">
-                                "The ones who are crazy enough to think they can change the world are the ones who do."
+                                &quot;The ones who are crazy enough to think they can change the world are the ones who do.&quot;
                             </div>
                             <cite className="text-sm sm:text-base md:text-lg text-white/60 font-medium not-italic">
                                 — Steve Jobs

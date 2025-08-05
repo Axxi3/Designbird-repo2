@@ -1,3 +1,4 @@
+import React, { JSX } from 'react';
 import avatar1 from '../../app/assets/Avatars/avatar-1.png';
 import avatar2 from "../../app/assets/Avatars/avatar-2.png";
 import avatar3 from "../../app/assets/Avatars/avatar-3.png";
@@ -8,9 +9,9 @@ import avatar7 from "../../app/assets/Avatars/avatar-7.png";
 import avatar8 from "../../app/assets/Avatars/avatar-8.png";
 import avatar9 from "../../app/assets/Avatars/avatar-9.png";
 
-import TestimonialColumn from "./TestimonialColumn";
+import TestimonialColumn, { TestimonialItem, TestimonialColumnType } from "./TestimonialColumn";
 
-const testimonials = [
+const testimonials: TestimonialItem[] = [
   {
     text: "Designbird gave me confidence and clarity. I started with zero knowledge, and now I freelance for 3 clients. The mentorship was incredible!",
     imageSrc: avatar1,
@@ -67,11 +68,11 @@ const testimonials = [
   },
 ];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+const firstColumn: TestimonialColumnType = testimonials.slice(0, 3);
+const secondColumn: TestimonialColumnType = testimonials.slice(3, 6);
+const thirdColumn: TestimonialColumnType = testimonials.slice(6, 9);
 
-export const Testimonials = () => {
+export const Testimonials = (): JSX.Element => {
   return (
     <section className="bg-[#101010] py-24 px-4">
       <div className="container">
@@ -90,7 +91,7 @@ export const Testimonials = () => {
 
         <p className="text-neutral-400 mt-4 text-[18px] md:text-lg text-center max-w-3xl mx-auto">
           With a 4.9/5 rating and 300+ successful career transformations, 
-          here's what our students say about their journey with Designbird...
+          here&apos;s what our students say about their journey with Designbird...
         </p>
 
         {/* Stats */}

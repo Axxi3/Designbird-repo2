@@ -1,14 +1,14 @@
 import React from 'react';
-import { TextAnimate } from "@/components/magicui/text-animate";
+
 import ZoomParallax from "@/components/ZoomParallax/index";
 import About from '@/components/About';
 import Project from '@/components/Projects/project';
-import Introduction from '@/components/Introduction';
+
 import Gallery from '@/components/Gallery';
 
-import ScrollingText from '@/components/InfiniteScroll';
+
 import { Testimonials } from '@/components/testimonial/TestimonialContainer';
-import Foot from '@/components/Footer';
+
 import Courses from '@/components/Courses';
 import HeroSection from '@/components/HeroSection';
 
