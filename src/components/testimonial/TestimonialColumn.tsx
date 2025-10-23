@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import React, { JSX } from "react";
 import { twMerge } from "tailwind-merge";
-import { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 // Type definitions
 export interface TestimonialItem {
@@ -57,7 +57,7 @@ export default function TestimonialColumn({
             >
               <div className="text-neutral-300 leading-relaxed">{testimonial.text}</div>
               <div className="flex items-center gap-3 mt-5">
-                <img
+                <Image
                   src={typeof testimonial.imageSrc === 'string' ? testimonial.imageSrc : testimonial.imageSrc.src}
                   width={40}
                   height={40}

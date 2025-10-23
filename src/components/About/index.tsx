@@ -1,8 +1,8 @@
 // components/MaskCursorEffect.tsx
 'use client';
 
-import React, { JSX, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { JSX, useEffect, useState, useRef } from 'react';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 interface MousePosition {
   x: number;
@@ -20,7 +20,6 @@ export default function MaskCursorEffect(): JSX.Element {
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    // Check if device is mobile/tablet
     const checkIfMobile = (): void => {
       setIsMobile(window.innerWidth <= 1024 || 'ontouchstart' in window);
     };
@@ -84,21 +83,11 @@ export default function MaskCursorEffect(): JSX.Element {
         About Us
       </h1>
       
-      {/* Description */}
-      <p 
-        onMouseEnter={textEnter} 
-        onMouseLeave={textLeave} 
-        className="text-center text-white/60 max-w-5xl leading-relaxed
-                   text-sm sm:text-base md:text-lg lg:text-xl xl:text-[26px]
-                   px-2 sm:px-4 lg:px-0"
-      >
-        At Designbird, we believe that great design is more than aesthetics—it&apos;s strategy, impact, and a
-        career. Founded in 2024 in Durgapur, West Bengal, Designbird was born out of a simple idea:
-        to bridge the gap between raw creative talent and real-world industry skills.
-        Over the years, we&apos;ve evolved from a small classroom setup into a thriving creative institute,
-        empowering hundreds of students to find their voice—and their profession—in the fast-paced
-        world of design, development, and digital marketing.
-      </p>
+      {/* Description with scroll reveal */}
+      <ScrollRevealText 
+        textEnter={textEnter}
+        textLeave={textLeave}
+      />
 
       {/* Cursor Effect - Only show on desktop */}
       {!isMobile && (
@@ -116,3 +105,66 @@ export default function MaskCursorEffect(): JSX.Element {
     </div>
   );
 }
+
+// Separate component for scroll reveal text
+function ScrollRevealText({ textEnter, textLeave }: { textEnter: () => void; textLeave: () => void }) {
+  const containerRef = useRef<HTMLParagraphElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 0.9", "start 0.25"]
+  });
+
+  const paragraphText = `At Designbird, we believe that great design is more than aesthetics—it's strategy, impact, and a career. Founded in 2024 in Durgapur, West Bengal, Designbird was born out of a simple idea: to bridge the gap between raw creative talent and real-world industry skills. Over the years, we've evolved from a small classroom setup into a thriving creative institute, empowering hundreds of students to find their voice—and their profession—in the fast-paced world of design, development, and digital marketing.`;
+  
+  const words = paragraphText.split(" ");
+
+  return (
+    <p 
+      ref={containerRef}
+      onMouseEnter={textEnter} 
+      onMouseLeave={textLeave} 
+      className="text-center max-w-5xl leading-relaxed
+                 text-sm sm:text-base md:text-lg lg:text-xl xl:text-[26px]
+                 px-2 sm:px-4 lg:px-0"
+    >
+      {words.map((word, i) => {
+        const start = i / words.length;
+        const end = start + (1 / words.length);
+        
+        return (
+          <Word 
+            key={i} 
+            range={[start, end]} 
+            progress={scrollYProgress}
+          >
+            {word}
+          </Word>
+        );
+      })}
+    </p>
+  );
+}
+
+// Word component with scroll-based opacity
+interface WordProps {
+  children: string;
+  range: number[];
+  progress: MotionValue<number>;
+}
+
+const Word: React.FC<WordProps> = ({ children, range, progress }) => {
+  const opacity = useTransform(progress, range, [0.2, 1]);
+  
+  return (
+    <span className="relative inline-block mr-[0.25em] mt-[0.25em]">
+      <span className="absolute opacity-20 text-white">{children}</span>
+      <motion.span
+        style={{ opacity }}
+        className="text-white"
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+};

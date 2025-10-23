@@ -3,6 +3,7 @@
 
 import React, { JSX } from 'react';
 import Tag from './Tag';
+import Image from 'next/image';
 
 /* ---------- 1.  Types ---------- */
 
@@ -85,7 +86,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
           ${feature.reverse ? 'order-1 md:order-2' : ''}
         `}
       >
-        <img
+        <Image
           src={feature.image}
           alt={feature.imageAlt}
           className="w-full h-full object-contain transition-opacity duration-300 hover:opacity-90"

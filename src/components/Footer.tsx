@@ -3,6 +3,7 @@
 import React, { JSX } from 'react';
 import Link from 'next/link';
 import { Linkedin, Instagram, Youtube, Facebook } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Foot(): JSX.Element {
   return (
@@ -12,7 +13,7 @@ export default function Foot(): JSX.Element {
           {/* Logo & Address */}
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center rounded-[99px]">
-              <img src="/logo.png" className="h-15 me-3 rounded-[99px]" alt="Designbird Logo" />
+              <Image src="/logo.png" className="h-15 me-3 rounded-[99px]" alt="Designbird Logo" />
               {/* <span className="self-center text-2xl font-semibold whitespace-nowrap">LOGO HERE</span> */}
             </Link>
             <p className="mt-4 text-sm text-gray-400">

@@ -4,10 +4,10 @@ import Image from "next/image";
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   { label: "About us", href: "/about-us" },
-  { label: "Services", href: "#integrations" },
-  { label: "Contact Us", href: "#faqs" },
+  { label: "Services", href: "/services" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
