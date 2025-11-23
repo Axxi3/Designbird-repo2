@@ -154,9 +154,9 @@ export default function TermsAndConditions() {
       {/* Footer CTA */}
       <div className="bg-[#1a1a1a] border-t border-white/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
-          <p className="text-gray-400 mb-4">
+          <Link href={"/contact"} className="text-gray-400 mb-4">
             Ready to start your creative journey?
-          </p>
+          </Link>
           <Link 
             href="/" 
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 text-white font-semibold rounded-full hover:scale-105 transition-transform duration-200"

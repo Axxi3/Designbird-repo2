@@ -17,7 +17,7 @@ export default function Navbar() {
     <>
       <section className="py-3 lg:py-4 fixed top-0 z-50 max-w-6xl w-full">
         {/* Background blur overlay */}
-        <div className="absolute inset-0  backdrop-blur-md"></div>
+        <div className="absolute inset-0  "></div>
         
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 bg-[#1a1a1a] backdrop-blur-sm border border-gray-200/80 rounded-[99px] px-4 sm:px-6 lg:px-8 shadow-lg shadow-gray-900/5">

@@ -10,6 +10,7 @@ import avatar8 from "../../app/assets/Avatars/avatar-8.png";
 import avatar9 from "../../app/assets/Avatars/avatar-9.png";
 
 import TestimonialColumn, { TestimonialItem, TestimonialColumnType } from "./TestimonialColumn";
+import Link from 'next/link';
 
 const testimonials: TestimonialItem[] = [
   {
@@ -139,9 +140,9 @@ export const Testimonials = (): JSX.Element => {
           <p className="text-neutral-400 mb-6">
             Ready to write your own success story?
           </p>
-          <button className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-white/90 transition-colors duration-200 hover:transform hover:scale-105">
+          <Link href={"/contact"} className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-white/90 transition-colors duration-200 hover:transform hover:scale-105">
             Start Your Journey Today
-          </button>
+          </Link>
         </div>
       </div>
     </section>

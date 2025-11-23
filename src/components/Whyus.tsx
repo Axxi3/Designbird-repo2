@@ -92,6 +92,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
           className="w-full h-full object-contain transition-opacity duration-300 hover:opacity-90"
           loading={index === 0 ? 'eager' : 'lazy'}
           onError={handleImageError}
+          height={10} width={15}
         />
       </div>
 

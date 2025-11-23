@@ -97,6 +97,7 @@ const Column: React.FC<ColumnProps> = ({ images, y, initialTop }) => {
             src={`/${src}`}
             alt={`Gallery image ${i + 1}`}
             fill
+           
             className="object-cover"
           />
         </div>

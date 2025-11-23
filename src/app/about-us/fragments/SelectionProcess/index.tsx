@@ -4,6 +4,7 @@ import SelectionCard from './Card'
 import React, { useRef } from 'react'
 import { motion, useTransform, useScroll } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 const cardData = [
   {
@@ -104,13 +105,13 @@ export default function SelectionProcess() {
         </div>
       </div>
 
-      <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-purple-600 to-indigo-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25">
+      <Link href={"/contact"} className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-purple-600 to-indigo-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25">
         <span className="relative z-10 flex items-center gap-2">
           Apply Now
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </span>
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      </button>
+      </Link>
     </div>
   )
 }

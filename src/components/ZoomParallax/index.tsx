@@ -80,6 +80,7 @@ export default function ZoomParallax(): JSX.Element {
                   src={pic.src} 
                   fill 
                   alt={`Gallery image ${index + 1}`}
+                 
                 />
               </div>
             </motion.div>

@@ -13,7 +13,7 @@ export default function Foot(): JSX.Element {
           {/* Logo & Address */}
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center rounded-[99px]">
-              <Image src="/logo.png" className="h-15 me-3 rounded-[99px]" alt="Designbird Logo" />
+              <Image src="/logo.png" className="h-15 me-3 rounded-[99px]" height={15} width={15} alt="Designbird Logo" />
               {/* <span className="self-center text-2xl font-semibold whitespace-nowrap">LOGO HERE</span> */}
             </Link>
             <p className="mt-4 text-sm text-gray-400">

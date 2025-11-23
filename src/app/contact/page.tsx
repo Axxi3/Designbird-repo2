@@ -15,6 +15,9 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Configuration
+  const SHEETDB_API_URL = "https://sheetdb.io/api/v1/rchf2unwqtbze";
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -25,25 +28,58 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Add your form submission logic here
-    console.log('Form submitted:', formData);
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        message: ''
+
+    try {
+      // Prepare the data payload matching your Sheet headers: first, last, email, phone, message
+      const payload = {
+        data: {
+          first: formData.firstName,
+          last: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          // Optional: Add a timestamp if you have a 'date' column
+          // date: new Date().toLocaleString() 
+        }
+      };
+
+      const response = await fetch(SHEETDB_API_URL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
       });
-    }, 2000);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Message sent successfully!"); // Simple success feedback
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        console.error("SheetDB Error:", data);
+        alert("Something went wrong. Please try again.");
+      }
+
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="min-h-screen text-white px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto pt-[6%]">
+    <div className="min-h-screen w-full max-w-8xl text-white px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+      <div className="max-w-5xl mx-auto pt-[6%]">
         
         {/* Header */}
         <motion.div 
@@ -236,7 +272,7 @@ export default function ContactSection() {
                            text-white placeholder-white/40 
                            focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent
                            transition-all duration-200 resize-none"
-                  placeholder="Hi, I am Jane I help.with....."
+                  placeholder="Hi, I am Jane and I need help with..."
                 />
               </div>
 
@@ -258,6 +294,19 @@ export default function ContactSection() {
             </form>
           </motion.div>
         </div>
+      </div>
+
+      {/* Map Iframe - Full width with spacing */}
+      <div className="w-full mt-[80px] px-4 md:px-0">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.4458580009687!2d87.3479577!3d23.5164611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f7715f32e42889%3A0xe597d1082789c702!2sDesignBird!5e0!3m2!1sen!2sin!4v1763917745800!5m2!1sen!2sin"
+          className="w-full h-[400px] md:h-[500px] rounded-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 ease-in-out shadow-2xl"
+          style={{ border: 0 }}
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="DesignBird Location"
+        />
       </div>
     </div>
   );
